@@ -56,7 +56,8 @@
 [difftool]
   prompt = false
 [core]
-  excludesfile = /Users/bro/.gitignore_global
+  excludesfile = /Users/seswu/.gitignore_global
+  editor = nano
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
