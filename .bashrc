@@ -1,4 +1,5 @@
 # .bashrc
+# Modified version
 
 if [ -n "$TERM" -a "$TERM" != "dumb" ]; then
 
