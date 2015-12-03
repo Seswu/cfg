@@ -11,7 +11,7 @@ function dur {
     $HOME/.cfg/install.sh
     ;;
   reinstall|re)
-    curl -Ls https://raw.github.com/griff/cfg/master/install.sh | bash
+    curl -Ls https://raw.github.com/Seswu/cfg/master/install.sh | bash
     ;;
   check|chk)
     if [ $(whoami) = "root" ];

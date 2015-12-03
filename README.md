@@ -2,7 +2,7 @@
 
 Install config tracking in your $HOME by running:
 ```
-  curl -Lks https://github.com/griff/cfg/raw/master/install.sh | bash
+  curl -Lks https://github.com/Seswu/cfg/raw/master/install.sh | bash
 ```
 
 Or in a shorter form:

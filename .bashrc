@@ -1,6 +1,4 @@
 # .bashrc
-# Author: Brian Olsen <brian@maven-group.org>
-# Source: http://github.com/griff/cfg/.bashrc
 
 if [ -n "$TERM" -a "$TERM" != "dumb" ]; then
 
@@ -8,7 +6,7 @@ if [ -n "$TERM" -a "$TERM" != "dumb" ]; then
 export HISTFILESIZE=999999
 export HISTSIZE=999999
 export HISTCONTROL=ignoredups:ignorespace
-export EMAIL=brian@maven-group.org
+export EMAIL=uw@lisberg.dk
 export FTP_PASSIVE=1
 shopt -s histappend
 shopt -s checkwinsize
@@ -89,8 +87,8 @@ if [ $(uname) == "Linux" ]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)";
   fi
-  if [ -n "$(command -v vim)" ]; then
-    export EDITOR=vim
+  if [ -n "$(command -v nano)" ]; then
+    export EDITOR=nano
   else
     export EDITOR=vi
   fi
