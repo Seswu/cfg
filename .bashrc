@@ -24,10 +24,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #path should have durdn config bin folder
-export PATH=$HOME/.cfg/bin:$HOME/scripts:$PATH
+export PATH=$HOME/.cfg/bin:$HOME/scripts:$HOME/bin:$PATH
+
 #set the terminal type to 256 colors
 export TERM=xterm-256color
 
+# Set up environment variables for synchronization
+export REPO_LOCAL_DIR=$HOME/lisberg/repositories
+export REPO_REMOTE_DIR=$HOME/lisberg/repositories
+export REPO_REMOTE_MACHINE=192.168.10.120
 
 # }}}
 

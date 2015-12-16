@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# File system monitoring script for purposes of synchronization,
+# by Uffe Wassmann, 11/12-2015.
+#
+# Script uses watchman to monitor a given directory.
+# Directory must be placed under $REPO_LOCAL_DIR at the
+# local machine.
+# Upon change, directory and everything in it is synchronized to
+# $REPO_REMOTE_DIR at $REPO_REMOTE_MACHINE.
+#
+# Assumptions:
+# Username is the same on both machines.
+# Public/private keys have already been set up.
+#
+# NB - Watchman will fail if called multiple times without
+# having been shut down first, with
+# watchman shutdown-server.
+
+if [ -z "$REPO_LOCAL_DIR" ]; then
+    echo "Local directory is not defined."
+    exit 1
+fi
+
+if [ -z "$REPO_REMOTE_DIR" ]; then
+    echo "Remote directory is not defined."
+    exit 1
+fi
+
+if [ -z "$REPO_REMOTE_MACHINE" ]; then
+	echo "No host machine defined."
+	exit 1
+fi
+
+if [ ! -d $REPO_LOCAL_DIR ]; then
+	echo "Local directory $REPO_LOCAL_DIR does not exist."
+	exit 1
+fi
+
+if [ 0 -ne `ping -c 1 $REPO_REMOTE_MACHINE &> /dev/null; echo $?` ]; then
+	echo "Network error while attempting contact to remote machine $REPO_REMOTE_MACHINE."
+	exit 1
+fi
+
+if [ 0 -ne `ssh $USER@$REPO_REMOTE_MACHINE "[ -d $REPO_REMOTE_DIR ]"; echo $?` ]; then
+	echo "Remote directory $REPO_REMOTE_DIR does not exist."
+	exit 1
+fi
+
+if [ 0 -ne `command -v watchman >/dev/null; echo $?` ]; then
+	echo "Watchman not installed."
+	exit 1
+fi
+
+cd $REPO_LOCAL_DIR
+if [ $1 -a -d $1 ]; then
+	watchman -- trigger $1 reposyncing -- syncdir $1
+	echo "Watching $1 for synchronization."
+else
+	echo "$1 is not a repository directory."
+fi

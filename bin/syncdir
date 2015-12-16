@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Synchronization script, by Uffe Wassmann, 11/12-2015.
+#
+# Rsync directory in $REPO_LOCAL_DIR at local machine
+# to $REPO_REMOTE_DIR at $REPO_REMOTE_MACHINE,
+# assuming same username on both machines, and
+# that public/private key setup has already
+# been completed.
+#
+# Meant to be used by another script, reposync,
+# which watches the file system and, upon change,
+# calls this script for synchronization.
+
+if [ -z "$REPO_LOCAL_DIR" ]; then
+    echo "Local directory is not defined."
+    exit 1
+fi
+
+if [ -z "$REPO_REMOTE_DIR" ]; then
+    echo "Remote directory is not defined."
+    exit 1
+fi
+
+if [ -z "$REPO_REMOTE_MACHINE" ]; then
+	echo "No host machine defined."
+	exit 1
+fi
+
+if [ ! -d $REPO_LOCAL_DIR ]; then
+	echo "Local directory $REPO_LOCAL_DIR does not exist."
+	exit 1
+fi
+
+if [ 0 -ne `ping -c 1 $REPO_REMOTE_MACHINE &> /dev/null; echo $?` ]; then
+	echo "Network error while attempting contact to remote machine $REPO_REMOTE_MACHINE."
+	exit 1
+fi
+
+if [ 0 -ne `ssh $USER@$REPO_REMOTE_MACHINE "[ -d $REPO_REMOTE_DIR ]"; echo $?` ]; then
+	echo "Remote directory $REPO_REMOTE_DIR does not exist."
+	exit 1
+fi
+
+cd $REPO_LOCAL_DIR
+if [ $1 -a -d $1 ]; then
+	echo "Starting rsync process for $1" >> ~/syncdir.log
+	rsync -e ssh -vrz --delete --exclude 'vendor' $1 $REPO_REMOTE_MACHINE:$REPO_REMOTE_DIR
+	echo "Finished synchronization for $1" >> ~/syncdir.log
+else
+	echo "$1 is not a repository directory."
+fi
