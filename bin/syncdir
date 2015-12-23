@@ -45,7 +45,7 @@ fi
 cd $REPO_LOCAL_DIR
 if [ $1 -a -d $1 ]; then
 	echo "Starting rsync process for $1" >> ~/syncdir.log
-	rsync -e ssh -vrz --delete --exclude 'vendor' $1 $REPO_REMOTE_MACHINE:$REPO_REMOTE_DIR
+	rsync -e ssh -rzlptgoD --delete --exclude 'vendor' --exclude '*.sqlite3' $1 $REPO_REMOTE_MACHINE:$REPO_REMOTE_DIR
 	echo "Finished synchronization for $1" >> ~/syncdir.log
 else
 	echo "$1 is not a repository directory."
