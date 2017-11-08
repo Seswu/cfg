@@ -24,7 +24,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #path should have durdn config bin folder
-export PATH=$HOME/.cfg/bin:$HOME/scripts:$HOME/bin:$PATH
+export PATH=$HOME/.cfg/bin:$HOME/scripts:$HOME/bin:$PATH:/opt/cxoffice/bin
 
 #set the terminal type to 256 colors
 export TERM=xterm-256color
