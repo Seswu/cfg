@@ -1,24 +1,49 @@
 #!/bin/bash -v
 trap read debug
 
-apt-get update
-apt-get upgrade
-apt-get install gimp
-apt-get install geany
-apt-get install nmap
-apt-get install openconnect
-apt-get install git
-apt-get install curl
-apt-get install inxi
-apt-get install rdesktop
-apt-get install screen
-apt-get install python3
+# Install script
+# Installs everything from scratch, on a fresh install of debian
+#
+# Run with.. 
+# curl -Lks https://github.com/Seswu/cfg/raw/master/bin/install-packages.sh | bash
+# ...I guess?
+
+# Pre-cfg
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git
+sudo apt-get install curl
+sudo apt-get install i3
+sudo apt-get install suckless-tools
+
+# Install cfg repo handling
+curl -Lks https://github.com/Seswu/cfg/raw/master/install.sh | bash
+
+# Add x86 architecture for compatibility
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get upgrade
+
+# Install packages
+sudo apt-get install gdebi
+sudo apt-get install gimp
+sudo apt-get install geany
+sudo apt-get install nmap
+sudo apt-get install inxi
+sudo apt-get install screen
+sudo apt-get install openconnect
+sudo apt-get install rdesktop
+sudo apt-get install python3
 
 # Perhaps to dev script?
-#apt-get install python3-pip
-#pip3 install -U pip
-#pip3 install -U setuptools
-#pip3 install -U virtualenv
+# apt-get install python3-pip
+# pip3 install -U pip
+# pip3 install -U setuptools
+# pip3 install -U virtualenv
+
+# Perhaps to game script?
+# wget http://crossover.codeweavers.com/redirect/crossover.deb
+# sudo gdebi crossover.deb
 
 # No funciona
 # apt-get install npm
