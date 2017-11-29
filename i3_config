@@ -20,6 +20,10 @@ set $tag5 "5: comm"
 bindsym $mod+5 workspace $tag5
 bindsym $mod+Shift+5 move container to workspace $tag5
 
+set $tag0 "0: media"
+bindsym $mod+0 workspace $tag0
+bindsym $mod+Shift+0 move container to workspace $tag0
+
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
 exec --no-startup-id nm-applet
