@@ -34,6 +34,8 @@ sudo apt-get install screen
 sudo apt-get install openconnect
 sudo apt-get install rdesktop
 sudo apt-get install python3
+sudo apt-get install pm-utils
+# emacs already installed?
 
 # Perhaps to dev script?
 # apt-get install python3-pip
