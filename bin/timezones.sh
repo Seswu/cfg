@@ -5,6 +5,7 @@
 
 
 export_zones=(
+	'America/Chicago'
 	'America/Indiana/Indianapolis'
 	'America/Lima'
 	'Europe/Copenhagen'
