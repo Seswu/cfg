@@ -8,7 +8,9 @@ export_zones=(
 	'America/Chicago'
 	'America/Indiana/Indianapolis'
 	'America/Lima'
+	'Europe/London'
 	'Europe/Copenhagen'
+	'Asia/Tokyo'
 	'Pacific/Auckland'
 )
 
