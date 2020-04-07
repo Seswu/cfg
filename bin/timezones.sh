@@ -12,6 +12,8 @@ export_zones=(
 	'Europe/Copenhagen'
 	'Asia/Tokyo'
 	'Pacific/Auckland'
+	'Australia/Lindeman'
+	'GST+0'
 )
 
 
@@ -38,9 +40,15 @@ case $# in
 		requested_datestring="$current_date $asked_time"
 	;;
 	2*)
-		local_tz=$1
+		local_tz=`cat /etc/timezone` # See comment above
+		current_date=$1
 		asked_time=$2
-		current_date=`date +%F`
+		requested_datestring="$current_date $asked_time"
+	;;
+	3*)
+		local_tz=$1
+		current_date=$2
+		asked_time=$3
 		requested_datestring="$current_date $asked_time"
 	;;
 	*)

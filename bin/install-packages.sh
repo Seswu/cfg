@@ -13,11 +13,15 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install git
 sudo apt-get install curl
-sudo apt-get install i3
 sudo apt-get install suckless-tools
 
+sudo apt install xorg
+sudo apt-get install i3
+
 # Install cfg repo handling
-curl -Lks https://github.com/Seswu/cfg/raw/master/install.sh | bash
+# ..too much magic and not all things needed.
+# I need something simpler and easier to read.
+# curl -Lks https://github.com/Seswu/cfg/raw/master/install.sh | bash
 
 # Add x86 architecture for compatibility
 sudo dpkg --add-architecture i386
